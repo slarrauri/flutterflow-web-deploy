@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  flutter-web-builder:
+    build:
+      context: .  # Apunta al directorio donde está el Dockerfile
+      args:
+        FLUTTER_VERSION: "3.24.2"  # Pasa la versión específica de Flutter como argumento
+    container_name: flutter-web-builder
+    environment:
+      - REPO_URL=${REPO_URL}  # Usamos la variable de entorno definida en el archivo .env
+    volumes:
+      - ./app:/app  # Montamos el volumen para acceder a los archivos locales
+      - ./build-flutter.sh:/build-flutter.sh  # Montamos el script para ejecutarlo dentro del contenedor
+    command: bash /build-flutter.sh  # Ejecutamos el script al iniciar el contenedor
