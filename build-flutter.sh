@@ -44,13 +44,10 @@ sed -i -E 's|<meta\s+name=["'\'']theme-color["'\'']\s+media=["'\'']\(prefers-col
 
 echo "Modificación completada."
 
-# Paso 4: Crear Archivo calls.php
-# El archivo call.php debe contener todas las variables php que se crearon en el paso anterio
-
-# Paso 5: Instalar las dependencias de Flutter
+# Paso 4: Instalar las dependencias de Flutter
 echo "Instalando dependencias de Flutter..."
 flutter pub get || { echo "Error al instalar dependencias de Flutter"; exit 1; }
 
-# Paso 6: Construir el proyecto para web
+# Paso 5: Construir el proyecto para web
 echo "Construyendo el proyecto para web..."
 flutter build web --release || { echo "Error al construir el proyecto para web"; exit 1; }
