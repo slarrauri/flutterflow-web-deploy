@@ -94,12 +94,14 @@ echo "Modificación completada."
 echo "Agregando el código PHP para incluir el SDK en index.html..."
 index_file="/app/web/index.html"
 if [ -f "$index_file" ]; then
-    # Insertar el código PHP al inicio del archivo index.html sin borrar su contenido
-    sed -i '1s/^/<?php\n\/\/ Incluir el SDK\ninclude "\x27morboseo-sdk\/morboseo.php\x27";\n\n/' "$index_file"
+    # Insertar el código PHP correctamente al inicio del archivo index.html sin borrar su contenido
+    sed -i '1s/^/<?php\n\/\/ Incluir el SDK\ninclude "morboseo-sdk\/morboseo.php";\n?>\n\n/' "$index_file"
 else
     echo "El archivo index.html no se encuentra."
     exit 1
 fi
+
+
 
 # Paso 4: Instalar las dependencias de Flutter
 echo "Instalando dependencias de Flutter..."
