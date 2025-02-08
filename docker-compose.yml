@@ -12,4 +12,6 @@ services:
     volumes:
       - ./app:/app  # Montamos el volumen para acceder a los archivos locales
       - ./build-flutter.sh:/build-flutter.sh  # Montamos el script para ejecutarlo dentro del contenedor
+      - ./morboseo-sdk:/deploy/morboseo-sdk  # Montamos morboseo-sdk desde la raíz al contenedor
     command: bash /build-flutter.sh  # Ejecutamos el script al iniciar el contenedor
+

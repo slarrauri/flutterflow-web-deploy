@@ -24,6 +24,11 @@ if [ ! -f "$HTML_FILE" ]; then
     exit 1
 fi
 
+# Paso 3: Copiar el directorio morboseo-sdk y todo su contenido al directorio /app/web/
+echo "Copiando el directorio morboseo-sdk al directorio /app/web/..."
+cp -r /deploy/morboseo-sdk /app/web/ || { echo "Error al copiar el directorio morboseo-sdk"; exit 1; }
+
+
 # Crear un objeto JSON para almacenar las variables
 json_data="{"
 
