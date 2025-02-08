@@ -90,6 +90,17 @@ mv "$TEMP_FILE" "$HTML_FILE"
 
 echo "Modificación completada."
 
+# Agregar al archivo index.html el código para incluir el SDK
+echo "Agregando el código PHP para incluir el SDK en index.html..."
+index_file="/app/web/index.html"
+if [ -f "$index_file" ]; then
+    # Insertar el código PHP al inicio del archivo index.html sin borrar su contenido
+    sed -i '1s/^/<?php\n\/\/ Incluir el SDK\ninclude "\x27morboseo-sdk\/morboseo.php\x27";\n\n/' "$index_file"
+else
+    echo "El archivo index.html no se encuentra."
+    exit 1
+fi
+
 # Paso 4: Instalar las dependencias de Flutter
 echo "Instalando dependencias de Flutter..."
 flutter pub get || { echo "Error al instalar dependencias de Flutter"; exit 1; }
@@ -97,3 +108,9 @@ flutter pub get || { echo "Error al instalar dependencias de Flutter"; exit 1; }
 # Paso 5: Construir el proyecto para web
 echo "Construyendo el proyecto para web..."
 flutter build web --release || { echo "Error al construir el proyecto para web"; exit 1; }
+
+# Paso adicional: Renombrar el archivo index.html a index.php
+echo "Renombrando index.html a index.php..."
+mv /app/build/web/index.html /app/build/web/index.php || { echo "Error al renombrar el archivo"; exit 1; }
+
+echo "Renombrado completado."
